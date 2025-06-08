@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Actividad3LengProg3")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8947285803046122de2d8dc4b3ca50a8ebfec1c4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+169248f43347a9691802a8d8fde35f38293edb65")]
 [assembly: System.Reflection.AssemblyProductAttribute("Actividad3LengProg3")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Actividad3LengProg3")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
