@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Actividad3LengProg3.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Actividad3LengProg3.Controllers
 {
@@ -13,6 +14,18 @@ namespace Actividad3LengProg3.Controllers
         public IActionResult Registrar()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Registrar(EstudianteViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                ViewBag.message = "El Estudiante fue registrado";
+                return View(model);
+            }
+
+            return View(model);
         }
     }
 }
