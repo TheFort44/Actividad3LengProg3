@@ -31,10 +31,10 @@ namespace Actividad3LengProg3.Models
         public DateTime FechaNacimiento { get; set; }
 
         [Required(ErrorMessage = "Seleccione el género")]
-        public string Genero { get; set; }  // Se usará con radio buttons
+        public string Genero { get; set; }
 
         [Required(ErrorMessage = "Seleccione el turno")]
-        public string Turno { get; set; }  // Mañana, Tarde, Noche (lista desplegable)
+        public string Turno { get; set; }
 
         [Required(ErrorMessage = "Seleccione el tipo de ingreso")]
         [Display(Name = "Tipo de ingreso")]
