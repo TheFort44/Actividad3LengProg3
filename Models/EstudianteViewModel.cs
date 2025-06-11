@@ -47,8 +47,7 @@ namespace Actividad3LengProg3.Models
         [Display(Name = "Porcentaje de beca")]
         public int? PorcentajeBeca { get; set; }
 
-        [Required(ErrorMessage = "Debe aceptar los términos y condiciones")]
-        [Range(typeof(bool), "true", "true", ErrorMessage = "Debe aceptar los términos y condiciones")]
+       [Range(typeof(bool), "False", "False", ErrorMessage = "Debe aceptar los términos y condiciones")]
         [Display(Name = "Términos y condiciones")]
         public bool TerminosYCondiciones { get; set; }
     }

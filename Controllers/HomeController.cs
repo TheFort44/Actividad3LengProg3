@@ -1,55 +1,52 @@
-using System.Diagnostics;
 using Actividad3LengProg3.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Diagnostics;
 
 namespace Actividad3LengProg3.Controllers
 {
+
     public class HomeController : Controller
     {
 
-        private List<EstudianteViewModel> Estudiantes = new List<EstudianteViewModel>();
+        private static List<EstudianteViewModel> estudiantes = new List<EstudianteViewModel>();
 
-        public HomeController()
-        {
+        private readonly List<string> carreras = new List<string> { "Ingeniería", "Medicina", "Derecho", "Arquitectura" };
+        private readonly List<string> tiposIngreso = new List<string> { "Nuevo ingreso", "Reingreso", "Transferencia" };
 
-        }
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            CargarCombos();
+            return View(new EstudianteViewModel());
         }
 
-        public IActionResult Lista()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
+        [HttpPost]
         public IActionResult Registrar(EstudianteViewModel model)
         {
-            if (ModelState.IsValid)
+            CargarCombos();
+
+            if (!ModelState.IsValid)
             {
-                ViewBag.message = "El Estudiante fue registrado";
-                return View(model);
+                return View("Index", model);
             }
 
-            return View(model);
+            estudiantes.Add(model);
+            TempData["Mensaje"] = "Estudiante registrado correctamente.";
+            return RedirectToAction("ListadoEstudiantes");
+        }
+
+
+        public IActionResult ListadoEstudiantes()
+        {
+            return View(estudiantes);
+        }
+
+
+        private void CargarCombos()
+        {
+            ViewBag.Carreras = new SelectList(carreras);
+            ViewBag.TiposIngreso = new SelectList(tiposIngreso);
         }
     }
 }
