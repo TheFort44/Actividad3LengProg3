@@ -12,8 +12,8 @@ namespace Actividad3LengProg3.Controllers
 
         private static List<EstudianteViewModel> estudiantes = new List<EstudianteViewModel>()
         {
-                new EstudianteViewModel
-    {
+            new EstudianteViewModel
+        {
         NombreCompleto = "Jaime Escalante",
         Matricula = "SD-2023-04866",
         Carrera = "Ingeniería",
@@ -110,6 +110,75 @@ namespace Actividad3LengProg3.Controllers
         {
             ViewBag.Carreras = new SelectList(carreras);
             ViewBag.TiposIngreso = new SelectList(tiposIngreso);
+        }
+
+        [HttpPost]
+        public IActionResult Eliminar(string matricula)
+        {
+            if (string.IsNullOrEmpty(matricula))
+            {
+                TempData["MensajeError"] = "Matrícula inválida.";
+                return RedirectToAction("ListadoEstudiantes");
+            }
+
+            var estudiante = estudiantes.FirstOrDefault(e => e.Matricula == matricula);
+            if (estudiante != null)
+            {
+                estudiantes.Remove(estudiante);
+                TempData["Mensaje"] = "Estudiante eliminado correctamente.";
+            }
+            else
+            {
+                TempData["MensajeError"] = "Estudiante no encontrado.";
+            }
+
+            return RedirectToAction("ListadoEstudiantes");
+        }
+
+        [HttpGet]
+public IActionResult Editar(string matricula)
+{
+    var estudiante = estudiantes.FirstOrDefault(e => e.Matricula == matricula);
+    if (estudiante == null)
+    {
+        TempData["MensajeError"] = "Estudiante no encontrado.";
+        return RedirectToAction("ListadoEstudiantes");
+    }
+
+    ViewBag.Carreras = new SelectList(carreras, estudiante.Carrera);
+    ViewBag.TiposIngreso = new SelectList(tiposIngreso, estudiante.TipoIngreso);
+
+    return View(estudiante);
+}
+
+        [HttpPost]
+        public IActionResult Editar(EstudianteViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var estudianteExistente = estudiantes.FirstOrDefault(e => e.Matricula == model.Matricula);
+            if (estudianteExistente == null)
+            {
+                TempData["MensajeError"] = "Estudiante no encontrado.";
+                return RedirectToAction("ListadoEstudiantes");
+            }
+
+            estudianteExistente.NombreCompleto = model.NombreCompleto;
+            estudianteExistente.Carrera = model.Carrera;
+            estudianteExistente.CorreoInstitucional = model.CorreoInstitucional;
+            estudianteExistente.Telefono = model.Telefono;
+            estudianteExistente.FechaNacimiento = model.FechaNacimiento;
+            estudianteExistente.Genero = model.Genero;
+            estudianteExistente.Turno = model.Turno;
+            estudianteExistente.TipoIngreso = model.TipoIngreso;
+            estudianteExistente.EstaBecado = model.EstaBecado;
+            estudianteExistente.PorcentajeBeca = model.PorcentajeBeca;
+            estudianteExistente.TerminosYCondiciones = model.TerminosYCondiciones;
+
+            return RedirectToAction("ListadoEstudiantes");
         }
     }
 }

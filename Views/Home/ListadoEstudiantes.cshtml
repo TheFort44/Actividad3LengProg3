@@ -45,6 +45,21 @@
                         <td>@est.TipoIngreso</td>
                         <td>@(est.EstaBecado ? "Sí" : "No")</td>
                         <td>@(est.PorcentajeBeca.HasValue? est.PorcentajeBeca + "%" : "-")</td>
+
+                        <td>
+                            <a href="@Url.Action("Eliminar", "Home", new { matricula = est.Matricula })"
+                               class="btn btn-danger"
+                               onclick="return confirm('¿Estás seguro de que deseas eliminar este estudiante?');">
+                                Eliminar
+                            </a>
+
+                            <br>
+
+                            <a href="@Url.Action("Editar", "Home", new { matricula = est.Matricula })"
+                               class="btn btn-secondary">
+                                Editar
+                            </a>
+                        </td>
                     </tr>
                 }
             </tbody>
