@@ -100,9 +100,13 @@ namespace Actividad3LengProg3.Controllers
         }
 
 
-        public IActionResult ListadoEstudiantes()
+            public IActionResult ListadoEstudiantes(string filtroMatricula)
         {
-            return View(estudiantes);
+            var listaFiltrada = string.IsNullOrEmpty(filtroMatricula)
+                ? estudiantes
+                : estudiantes.Where(e => e.Matricula.Contains(filtroMatricula, StringComparison.OrdinalIgnoreCase)).ToList();
+
+            return View(listaFiltrada);
         }
 
 
@@ -112,24 +116,14 @@ namespace Actividad3LengProg3.Controllers
             ViewBag.TiposIngreso = new SelectList(tiposIngreso);
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult Eliminar(string matricula)
         {
-            if (string.IsNullOrEmpty(matricula))
-            {
-                TempData["MensajeError"] = "Matrícula inválida.";
-                return RedirectToAction("ListadoEstudiantes");
-            }
-
             var estudiante = estudiantes.FirstOrDefault(e => e.Matricula == matricula);
             if (estudiante != null)
             {
                 estudiantes.Remove(estudiante);
                 TempData["Mensaje"] = "Estudiante eliminado correctamente.";
-            }
-            else
-            {
-                TempData["MensajeError"] = "Estudiante no encontrado.";
             }
 
             return RedirectToAction("ListadoEstudiantes");
