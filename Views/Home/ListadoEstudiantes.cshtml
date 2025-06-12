@@ -45,9 +45,6 @@
                         <td>@est.TipoIngreso</td>
                         <td>@(est.EstaBecado ? "Sí" : "No")</td>
                         <td>@(est.PorcentajeBeca.HasValue? est.PorcentajeBeca + "%" : "-")</td>
-                        <td>
-                            <a href="/Estudiante/Editar/@est.Matricula" class="btn btn-sm btn-secondary">Editar</a>
-                        </td>
                     </tr>
                 }
             </tbody>

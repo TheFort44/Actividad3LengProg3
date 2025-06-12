@@ -6,10 +6,73 @@ using System.Diagnostics;
 namespace Actividad3LengProg3.Controllers
 {
 
+
     public class HomeController : Controller
     {
 
-        private static List<EstudianteViewModel> estudiantes = new List<EstudianteViewModel>();
+        private static List<EstudianteViewModel> estudiantes = new List<EstudianteViewModel>()
+        {
+                new EstudianteViewModel
+    {
+        NombreCompleto = "Jaime Escalante",
+        Matricula = "SD-2023-04866",
+        Carrera = "Ingeniería",
+        CorreoInstitucional = "sd-2023-04866@ufhec.edu.do",
+        Telefono = "8297584971",
+        FechaNacimiento = new DateTime(2004, 1, 21),
+        Genero = "Masculino",
+        Turno = "Mañana",
+        TipoIngreso = "Nuevo ingreso",
+        EstaBecado = true,
+        PorcentajeBeca = 100,
+        TerminosYCondiciones = true
+    },
+    new EstudianteViewModel
+    {
+        NombreCompleto = "Carlos Jiménez Peña",
+        Matricula = "MT-2023-0582",
+        Carrera = "Medicina",
+        CorreoInstitucional = "carlos.jimenez@ufhec.edu.do",
+        Telefono = "8095552345",
+        FechaNacimiento = new DateTime(2000, 11, 10),
+        Genero = "Masculino",
+        Turno = "Tarde",
+        TipoIngreso = "Reingreso",
+        EstaBecado = false,
+        PorcentajeBeca = null,
+        TerminosYCondiciones = true
+    },
+    new EstudianteViewModel
+    {
+        NombreCompleto = "María Fernández Gómez",
+        Matricula = "SD-2023-0823",
+        Carrera = "Derecho",
+        CorreoInstitucional = "maria.fernandez@ufhec.edu.do",
+        Telefono = "8095553456",
+        FechaNacimiento = new DateTime(2002, 3, 15),
+        Genero = "Femenino",
+        Turno = "Noche",
+        TipoIngreso = "Transferencia",
+        EstaBecado = true,
+        PorcentajeBeca = 75,
+        TerminosYCondiciones = true
+    },
+    new EstudianteViewModel
+    {
+        NombreCompleto = "José Martínez Ruiz",
+        Matricula = "SD-2023-4824",
+        Carrera = "Arquitectura",
+        CorreoInstitucional = "jose.martinez@ufhec.edu.do",
+        Telefono = "8095554567",
+        FechaNacimiento = new DateTime(1999, 8, 30),
+        Genero = "Masculino",
+        Turno = "Mañana",
+        TipoIngreso = "Nuevo ingreso",
+        EstaBecado = false,
+        PorcentajeBeca = null,
+        TerminosYCondiciones = true
+    }
+        };
 
         private readonly List<string> carreras = new List<string> { "Ingeniería", "Medicina", "Derecho", "Arquitectura" };
         private readonly List<string> tiposIngreso = new List<string> { "Nuevo ingreso", "Reingreso", "Transferencia" };
